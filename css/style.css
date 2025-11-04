@@ -98,25 +98,34 @@ h1, h2, h3, h4, h5 {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding-top: 80px;
+    padding-top: 20px;
 }
 
+/* imagem principal */
 .hero-logo {
-    width: 480px;
+    width: 460px;
     height: auto;
-    margin: 0 auto 0.5rem auto; /* imagem centralizada + espaçamento controlado */
     display: block;
+    margin: 0 auto 0.2rem auto; /* bem colado no texto */
 }
 
+/* texto */
 .hero p {
     color: var(--cinza);
     max-width: 650px;
-    margin: 0 auto 1.5rem auto;
+    margin: 0 auto 0.6rem auto;
     font-size: 1.1rem;
-    line-height: 1.5;
+    line-height: 1.4;
+    padding-top: 0 !important;
 }
 
-/* Botão principal */
+/* remove margem do .lead do Bootstrap */
+.hero .lead {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* botão principal */
 .btn-lavanda {
     background-color: var(--lavanda-escuro);
     color: var(--branco);
@@ -124,13 +133,71 @@ h1, h2, h3, h4, h5 {
     border-radius: 50px;
     transition: all 0.3s ease;
     font-weight: 600;
-    padding: 10px 28px;
+    padding: 10px 18px;
 }
 
 .btn-lavanda:hover {
     background-color: var(--lavanda);
     color: var(--grafite);
     box-shadow: 0 4px 14px rgba(156, 132, 166, 0.4);
+}
+
+/* ==========================
+   RESPONSIVIDADE
+   ========================== */
+@media (max-width: 992px) {
+    .hero {
+        min-height: 80vh;
+        padding: 40px 20px;
+    }
+
+    .hero-logo {
+        width: 380px;
+    }
+
+    .hero p {
+        font-size: 1rem;
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        min-height: 75vh;
+        padding-top: 100px;
+    }
+
+    .hero-logo {
+        width: 320px;
+        margin-bottom: 0.1rem;
+    }
+
+    .hero p {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+
+    .btn-lavanda {
+        padding: 10px 24px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-logo {
+        width: 250px;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
+        line-height: 1.3;
+    }
+
+    .btn-lavanda {
+        font-size: 0.9rem;
+        padding: 8px 18px;
+    }
 }
 
 /* ==========================
