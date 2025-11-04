@@ -17,6 +17,9 @@
     <!-- Ícones -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
+    <!-- Adicione no <head> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <!-- CSS personalizado -->
     <link href="css/style.css" rel="stylesheet">
 </head>
@@ -148,6 +151,344 @@
         offset: 120
     });
 </script>
+<!-- Adicione no <head> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-</body>
-</html>
+<!-- Adicione no <head> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- === Chat Flutuante (colar antes do </body>) === -->
+<style>
+    :root {
+        --lavanda: #C6B4CE;
+        --lavanda-escuro: #9C84A6;
+        --bege: #F5F2EC;
+        --papel: #F8F5EE;
+        --branco: #FFFFFF;
+        --cinza: #5A5A5A;
+        --grafite: #2D2D2D;
+        --sombra-magica: rgba(156, 132, 166, 0.35);
+    }
+
+    /* container fixo */
+    #chat-container {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index: 11000;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* botão redondo com chapéu dentro */
+    #chat-button {
+        position: relative;
+        background-color: var(--lavanda-escuro);
+        color: var(--branco);
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 30px;
+        box-shadow: 0 6px 15px var(--sombra-magica);
+        transition: transform 0.25s ease, background-color 0.25s ease;
+        overflow: visible;
+    }
+
+    #chat-button:hover {
+        background-color: var(--lavanda);
+        transform: translateY(-3px);
+    }
+
+    /* ícone do caldeirão */
+    #chat-button i.fa-cauldron {
+        font-size: 28px;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* chapéu flutuante DENTRO do botão */
+    #chat-hat {
+        position: absolute;
+        top: 10px;
+        font-size: 22px;
+        color: var(--lavanda);
+        animation: flutuar 2.5s ease-in-out infinite;
+        z-index: 3;
+        filter: drop-shadow(0 0 6px var(--sombra-magica));
+        transform-origin: center;
+    }
+
+    @keyframes flutuar {
+        0%, 100% { transform: translateY(0) rotate(-10deg); }
+        50% { transform: translateY(-5px) rotate(-15deg); }
+    }
+
+    /* caixa do chat */
+    #chat-box {
+        display: none;
+        width: 360px;
+        max-width: 90vw;
+        background-color: var(--papel);
+        border: 2px solid var(--lavanda-escuro);
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px var(--sombra-magica);
+        margin-bottom: 12px;
+        display: flex;
+        flex-direction: column;
+        animation: fadeIn 0.28s ease;
+        pointer-events: auto;
+    }
+
+    /* header */
+    #chat-header {
+        background: var(--lavanda-escuro);
+        color: var(--branco);
+        padding: 12px 14px;
+        font-weight: 700;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        font-size:15px;
+        border-bottom:1px solid var(--lavanda);
+    }
+
+    /* mensagens */
+    #chat-messages {
+        padding: 12px;
+        font-size: 15px;
+        color: var(--grafite);
+        max-height: 280px;
+        overflow-y: auto;
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        background: var(--bege);
+    }
+
+    .message {
+        max-width:75%;
+        padding:10px 14px;
+        border-radius:18px;
+        word-wrap:break-word;
+        box-shadow: 0 3px 8px var(--sombra-magica);
+        opacity: 0;
+        transform: translateY(8px);
+        animation: messageIn 0.28s forwards;
+    }
+
+    .message.bot {
+        background: var(--lavanda-escuro);
+        color: var(--branco);
+        align-self:flex-start;
+        border-bottom-left-radius:6px;
+    }
+
+    .message.user {
+        background: var(--branco);
+        color: var(--grafite);
+        border:1px solid var(--lavanda);
+        align-self:flex-end;
+        border-bottom-right-radius:6px;
+    }
+
+    #chat-options {
+        display:flex;
+        flex-direction:column;
+        padding:10px;
+        gap:8px;
+        border-top:1px solid var(--lavanda);
+        background: var(--papel);
+    }
+
+    .chat-option {
+        padding:10px;
+        border-radius:12px;
+        border:none;
+        cursor:pointer;
+        background:var(--lavanda-escuro);
+        color:var(--branco);
+        font-size:14px;
+        box-shadow:0 3px 6px var(--sombra-magica);
+        transition: transform 0.15s;
+    }
+
+    .chat-option:hover { transform: translateY(-2px); }
+
+    @keyframes fadeIn { from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none} }
+    @keyframes messageIn { from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none} }
+
+    @media (max-width:480px){
+        #chat-box { width: 92vw; right:12px; left:12px; bottom:88px; }
+        #chat-messages { max-height: 220px; padding:8px; }
+    }
+</style>
+
+<div id="chat-container" aria-live="polite">
+    <div id="chat-box" role="dialog" aria-label="Chat Místico">
+        <div id="chat-header">
+            <span>🔮 Lavuna</span>
+            <button id="chat-close" aria-label="Fechar chat" style="background:none;border:none;color:#fff;font-size:16px;cursor:pointer">✖</button>
+        </div>
+
+        <div id="chat-messages">
+            <div class="message bot" style="animation-delay:0.05s">
+                Olá, alma perfumada ✨
+                Deseja conhecer nossos incensos, kits ou falar no WhatsApp?
+            </div>
+        </div>
+
+        <div id="chat-options">
+            <button class="chat-option" data-msg="Tipos de incensos">Tipos de incensos</button>
+            <button class="chat-option" data-msg="Kits e valores">Kits e valores</button>
+            <button class="chat-option" data-msg="WhatsApp">Falar no WhatsApp</button>
+        </div>
+    </div>
+
+    <button id="chat-button" aria-haspopup="dialog" aria-expanded="false">
+        <i id="chat-hat" class="fa-solid fa-hat-wizard"></i>
+        <i class="fa-duotone fa-cauldron" style="--fa-primary-color:#B197FC; --fa-secondary-color:#B197FC;"></i>
+    </button>
+</div>
+
+<script>
+    (function(){
+        const chatButton = document.getElementById('chat-button');
+        const chatBox = document.getElementById('chat-box');
+        const chatClose = document.getElementById('chat-close');
+        const chatOptions = Array.from(document.querySelectorAll('.chat-option'));
+        const chatMessages = document.getElementById('chat-messages');
+
+        function openChat(){
+            chatBox.style.display = 'flex';
+            chatButton.setAttribute('aria-expanded','true');
+            setTimeout(()=> chatMessages.scrollTop = chatMessages.scrollHeight, 60);
+        }
+
+        function closeChat(){
+            chatBox.style.display = 'none';
+            chatButton.setAttribute('aria-expanded','false');
+        }
+
+        chatButton.addEventListener('click', () => {
+            if (chatBox.style.display === 'flex') closeChat();
+            else openChat();
+        });
+
+        chatClose.addEventListener('click', closeChat);
+
+        document.addEventListener('click', (e) => {
+            const inside = e.composedPath().includes(chatBox) || e.composedPath().includes(chatButton);
+            if (!inside && chatBox.style.display === 'flex') closeChat();
+        });
+
+        function showBotMessage(text, speed=20){
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'message bot';
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            let i = 0;
+            const interval = setInterval(() => {
+                msgDiv.textContent += text[i] ?? '';
+                i++;
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                if (i >= text.length) clearInterval(interval);
+            }, speed);
+        }
+
+        function showUserMessage(text){
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'message user';
+            msgDiv.textContent = text;
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function resposta(opcao){
+            if (opcao === 'Tipos de incensos') {
+                return 'Temos incensos artesanais, energéticos e aromaterapêuticos 🌸. Deseja saber os aromas disponíveis?';
+            } else if (opcao === 'Kits e valores') {
+                return 'Oferecemos kits temáticos e combos de purificação 💫. Posso enviar o catálogo completo pra você no WhatsApp.';
+            } else {
+                return '';
+            }
+        }
+
+        function criarDropdownWhatsApp(){
+            const botMsg = document.createElement('div');
+            botMsg.className = 'message bot';
+            botMsg.textContent = 'Escolha uma mensagem ou digite a sua:';
+            chatMessages.appendChild(botMsg);
+
+            const container = document.createElement('div');
+            container.style.display = 'flex';
+            container.style.flexDirection = 'column';
+            container.style.gap = '6px';
+            container.style.padding = '8px';
+
+            const select = document.createElement('select');
+            select.style.padding = '6px 8px';
+            select.style.borderRadius = '12px';
+            select.style.border = '1px solid #9C84A6';
+            select.innerHTML = `
+            <option value="">-- Escolha uma mensagem --</option>
+            <option value="Olá! Gostaria de saber mais sobre os incensos.">Sobre os incensos</option>
+            <option value="Quero informações sobre kits e valores.">Kits e valores</option>
+            <option value="Desejo receber o catálogo completo.">Receber catálogo</option>
+            <option value="Tenho dúvidas sobre os aromas.">Dúvidas sobre aromas</option>
+        `;
+            container.appendChild(select);
+
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.placeholder = 'Ou digite sua mensagem';
+            input.style.padding = '6px 8px';
+            input.style.borderRadius = '12px';
+            input.style.border = '1px solid #9C84A6';
+            container.appendChild(input);
+
+            const btn = document.createElement('button');
+            btn.textContent = 'Abrir WhatsApp';
+            btn.style.padding = '8px';
+            btn.style.border = 'none';
+            btn.style.borderRadius = '12px';
+            btn.style.backgroundColor = '#25D366';
+            btn.style.color = '#fff';
+            btn.style.cursor = 'pointer';
+            btn.style.fontWeight = '600';
+            container.appendChild(btn);
+
+            btn.addEventListener('click', () => {
+                let msg = input.value || select.value || '';
+                const numero = '554196473945';
+                const linkWhats = msg ?
+                    `https://api.whatsapp.com/send?phone=${numero}&text=${encodeURIComponent(msg)}` :
+                    `https://api.whatsapp.com/send?phone=${numero}`;
+                window.open(linkWhats, '_blank');
+                chatMessages.removeChild(container);
+            });
+
+            chatMessages.appendChild(container);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        chatOptions.forEach(button => {
+            button.addEventListener('click', () => {
+                const userText = button.dataset.msg;
+                showUserMessage(userText);
+
+                if (userText === 'WhatsApp') {
+                    criarDropdownWhatsApp();
+                } else {
+                    setTimeout(() => showBotMessage(resposta(userText)), 300);
+                }
+            });
+        });
+    })();
+</script>
+<!-- === FIM Chat Flutuante === -->
+
