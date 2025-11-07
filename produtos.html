@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Lavuna</title>
+    <title>Lavuna | Produtos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Google Fonts -->
@@ -17,7 +17,7 @@
     <!-- Ícones -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Adicione no <head> -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <!-- CSS personalizado -->
@@ -29,7 +29,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg fixed-top bg-white shadow-sm py-3">
     <div class="container">
-        <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
             Lavuna
             <img src="img/lua.png" alt="Lua" style="width:38px; height:38px; margin-left:8px;">
         </a>
@@ -38,55 +38,38 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link active" href="#inicio">Início</a></li>
-                <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
-                <li class="nav-item"><a class="nav-link" href="#produtos">Produtos</a></li>
-                <li class="nav-item"><a class="nav-link" href="#proposito">Propósito</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
-                li class="nav-item"><a class="nav-link active" href="produtos.html">Produtos</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#inicio">Início</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#sobre">Sobre</a></li>
+                <li class="nav-item"><a class="nav-link active" href="produtos.html">Produtos</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#proposito">Propósito</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#contato">Contato</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<!-- Hero -->
-<header id="inicio" class="hero">
+<!-- Hero Produtos -->
+<header id="inicio" class="hero py-5 mt-5">
     <div class="container text-center">
         <div class="hero-content" data-aos="fade-up">
-            <img src="img/lavunabanner.png" alt="Lavuna" class="hero-logo">
-            <p class="lead">
-                Incensos artesanais feitos com ervas, flores e boas intenções.<br>
-                Cada aroma carrega um pedacinho de calma, natureza e propósito.
+            <img src="img/lavunabanner.png" alt="Lavuna" class="hero-logo img-fluid" style="max-width:300px;">
+            <p class="lead mt-3">
+                Encontre o incenso ideal para o seu momento 🌿<br>
+                Nossos produtos são feitos artesanalmente com ervas, flores e boas intenções.
             </p>
-            <a href="#produtos" class="btn btn-lavanda px-4 py-3">Conheça nossos incensos</a>
         </div>
     </div>
 </header>
-
-<!-- Sobre -->
-<section id="sobre" class="py-5">
-    <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-md-6" data-aos="fade-right">
-                <img src="img/lavanda.png" alt="Incensos sendo feitos à mão" class="img-fluid rounded shadow-lg">
-            </div>
-            <div class="col-md-6" data-aos="fade-left">
-                <h2 class="section-title mb-4">Sobre nós</h2>
-                <p>Lavuna nasceu do amor pelas plantas, pelos rituais e pela tranquilidade dos pequenos momentos.
-                    Nossos incensos são produzidos artesanalmente, com ingredientes naturais e energia positiva do início ao fim do processo.</p>
-                <p>Queremos levar leveza para dentro das casas, espalhando aromas que conectam corpo, mente e alma.</p>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- Produtos -->
 <section id="produtos" class="py-5 bg-light">
     <div class="container text-center">
         <h2 class="section-title mb-5" data-aos="fade-up">Nossos Produtos</h2>
+
         <div class="row g-4">
+            <!-- Incenso 1 -->
             <div class="col-md-4" data-aos="zoom-in">
-                <div class="produto-card h-100">
+                <div class="produto-card h-100 shadow-sm rounded">
                     <img src="img/incensolavanda.png" alt="Incenso de Lavanda" class="img-fluid rounded-top">
                     <div class="p-4">
                         <h5>Incenso de Lavanda</h5>
@@ -94,8 +77,10 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Incenso 2 -->
             <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
-                <div class="produto-card h-100">
+                <div class="produto-card h-100 shadow-sm rounded">
                     <img src="img/salviabranca.png" alt="Incenso de Sálvia Branca" class="img-fluid rounded-top">
                     <div class="p-4">
                         <h5>Incenso de Sálvia Branca</h5>
@@ -103,12 +88,47 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Incenso 3 -->
             <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
-                <div class="produto-card h-100">
-                    <img src="img/incensorosa.png" alt="Incenso de Rosa e Canela" class="img-fluid rounded-top">
+                <div class="produto-card h-100 shadow-sm rounded">
+                    <img src="img/incensorosa.png" alt="Incenso de Rosa e Alecrim" class="img-fluid rounded-top">
                     <div class="p-4">
                         <h5>Incenso de Rosa e Alecrim</h5>
                         <p>Amor e prosperidade. Aroma quente e acolhedor.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kit -->
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+                <div class="produto-card h-100 shadow-sm rounded">
+                    <img src="img/kitdefumacao.png" alt="Kit de Defumação" class="img-fluid rounded-top">
+                    <div class="p-4">
+                        <h5>Kit de Defumação</h5>
+                        <p>Inclui incenso, ervas e carvão natural para purificar o ambiente e a energia.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sabonete -->
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="400">
+                <div class="produto-card h-100 shadow-sm rounded">
+                    <img src="img/sabonetenatural.png" alt="Sabonete Natural" class="img-fluid rounded-top">
+                    <div class="p-4">
+                        <h5>Sabonete Natural</h5>
+                        <p>Feito à mão com óleos essenciais. Hidrata e renova a pele naturalmente.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Combo -->
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="500">
+                <div class="produto-card h-100 shadow-sm rounded">
+                    <img src="img/combosagrado.png" alt="Combo Sagrado" class="img-fluid rounded-top">
+                    <div class="p-4">
+                        <h5>Combo Sagrado</h5>
+                        <p>Combina incensos, defumador e sabonete — um ritual completo de autocuidado.</p>
                     </div>
                 </div>
             </div>
@@ -116,29 +136,9 @@
     </div>
 </section>
 
-<!-- Propósito -->
-<section id="proposito" class="py-5 text-center">
-    <div class="container" data-aos="fade-up">
-        <h2 class="section-title mb-4">Nosso Propósito</h2>
-        <p class="mx-auto" style="max-width: 720px;">
-            Acreditamos que a espiritualidade está nas pequenas coisas — no cheiro que desperta memórias,
-            na brisa que acalma e no fogo que transforma.
-            Cada incenso da Lavuna é um convite ao agora, à presença e ao cuidado com o que realmente importa.
-        </p>
-    </div>
-</section>
-
-<!-- Contato -->
-<section id="contato" class="text-center py-5" data-aos="fade-up">
-    <a href="https://api.whatsapp.com/send?phone=5541996473945&text=Olá! Gostaria de saber mais sobre os incensos da Lavuna."
-       target="_blank" class="btn btn-lavanda px-4 py-3">
-        <i class="bi bi-whatsapp me-2"></i> Fale conosco pelo WhatsApp
-    </a>
-</section>
-
 <!-- Rodapé -->
 <footer class="text-center py-4 border-top small text-muted">
-    © 2025 Lavuna — Feito a mão, com ervas e amor.
+    © 2025 Lavuna — Feito à mão, com ervas e amor 🌙
 </footer>
 
 <!-- Scripts -->
@@ -152,6 +152,7 @@
         offset: 120
     });
 </script>
+
 <!-- Adicione no <head> -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -559,4 +560,5 @@
 </script>
 <!-- === FIM Chat Místico === -->
 
-
+</body>
+</html>
